@@ -1,5 +1,4 @@
-%23%21%2Fusr%2Fbin%2Fpython2
-%23coding%3Dutf-8
+
 
 
 import%20os%2Csys%2Ctime%2Cdatetime%2Crandom%2Chashlib%2Cre%2Cthreading%2Cjson%2Curllib%2Ccookielib%2Crequests%2Cmechanize
